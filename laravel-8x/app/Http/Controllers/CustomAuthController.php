@@ -39,8 +39,11 @@ class CustomAuthController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'phone' => 'required',
+            'mssv' => 'required',
+            'lop' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
+            'password' => 'required|min:1',
         ]);
 
         $data = $request->all();
@@ -53,6 +56,9 @@ class CustomAuthController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+            'phone' => $data['phone'],
+            'mssv' => $data['mssv'],
+            'lop' => $data['lop'],
             'email' => $data['email'],
             'password' => Hash::make($data['password'])
         ]);
